@@ -1,0 +1,110 @@
+/**
+ * @(#)KashK022PA1.java
+ * @author kash
+ * @version 1.00 2019/2/27 6:08 PM
+ * Program purpose: To create a program that creates an address book.
+ */
+
+import java.util.Scanner; //IMPORT SCANNER
+
+public class KashK022PA1
+{
+  public static void main(String[] args)//MAIN METHOD
+  {
+    String name = "";
+    String addressee = "";
+    String street = "";
+    String cityStateZip = "";
+    String phone = "";
+    String family = String.format("%nFAMILY%n");
+    String friends = String.format("%nFRIENDS%n");
+    int relationship = 0;
+    char another = ' ';
+    StringBuilder phoneFormatted;
+    
+    Scanner input = new Scanner(System.in);
+    
+    System.out.printf("%nBegin entering addresses? 'Y' or 'N': "); //PROMPT 1
+    
+    another = input.nextLine().charAt(0); //gives input to "another"
+    if(another == 'y' || another == 'Y')
+    {
+      System.out.printf("%nEnter your name: "); //PROMPT 2
+      name = input.nextLine(); //gives input to name
+      
+    }
+    else
+    {
+     System.out.printf("%nSystem exiting"); 
+    }
+  
+    
+    System.out.printf("%nEnter the name of the addressee: "); //PROMPT 3
+    addressee = input.nextLine(); //gives input to "addressee"
+    
+    
+    System.out.printf("%nEnter the street for %s. %n:", addressee); //PROMPT 4
+    street = input.nextLine(); //gives input to "street"
+   
+    
+    System.out.printf("%nEnter the city, state, and zip code" //PROMPT 5
+                        + "for %s. in the correct format:", addressee);
+    cityStateZip = input.nextLine(); //gives input to "cityStateZip"
+    
+    
+    System.out.printf("%nEnter the phone number for %s. including area code:", addressee); //PROMPT 6
+    phone = input.nextLine(); //gives input to "phone"
+   
+    
+    //SENDING THE PHONE NUMBER IN THE STRING VARIABLE phone TO THE
+    //STRINGBUILDER OBJECT phoneFormatted, THEN USING THAT OBJECT TO INSERT
+    //THE DASHES INTO THE PHONE NUMBER.
+    
+    phoneFormatted = new StringBuilder(phone);
+    phoneFormatted.insert(3, '-');
+    phoneFormatted.insert(7, '-');
+    
+    System.out.printf("%nRelationships of addressee: " //PROMPT 7
+               + "%n%n1. Family"
+               + "%n2. Friends"
+               + "%n%nChoose a number from above: ");
+          relationship = input.nextInt(0);
+             
+  
+    //gives input to "relationship"
+    
+    
+    //THIS IF ELSE STATEMENT DETERMINES IN WHICH STRING OBJECT TO STORE THE ADDRESS.
+    //WHERE SHOULD YOU PLACE THIS IF ELSE? WHEN YOU TEST relationship.
+    
+    if(relationship == 1)
+    {
+     family += String.format("%nAddressee: %s"
+                               + "%nStreet:  %s"
+                               + "%nCity, State Zip: %s"
+                               + "%nPhone: %s%n", addressee, street,
+                               cityStateZip, phoneFormatted);
+    }//END IF relationship equals 1
+    
+    else
+    {
+      friends += String.format("%nAddressee: %s"
+                                 + "%nStreet: %s"
+                                 + "%nCity, State Zip: %s"
+                                 + "%nPhone: %s%n", addressee, street,
+                               cityStateZip, phoneFormatted);
+    }//END if relationship not equal 1
+    
+    
+    System.out.printf("%nDo you want to enter another address? 'Y' or 'N': "); //PROMPT 8
+    another = input.nextLine().charAt(0); //starts another input to "another"
+    
+    
+    System.out.printf("%nADDRESS BOOK FOR %s%n" //ADDRESS BOOK WITH COMPLETE INFO
+                        + "%s"
+                        + "%s",name, family, friends);
+  
+  
+  System.exit(0); //EXIT PROGRAM
+  }//END MAIN()
+}//END APPLICATION CLASS
